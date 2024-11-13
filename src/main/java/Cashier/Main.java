@@ -1,4 +1,4 @@
-package Cashier;
+package main.java.Cashier;
 
 import Cashier.logic.DataModel;
 import Cashier.ui.Cart;
