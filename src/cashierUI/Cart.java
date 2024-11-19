@@ -1,6 +1,5 @@
 package cashierUI;
 
-import model.DataModel;
 import domain.DataListener;
 
 import javax.swing.*;
@@ -8,19 +7,16 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.Map;
 
 public class Cart extends Frame implements DataListener {
-    private DataModel dataModel;
-    DefaultTableModel tbModel;
+    public DefaultTableModel tableModel;
 
-    public Cart(DataModel dataModel) {
-        this.dataModel = dataModel;
+    public Cart() {
         this.setLayout(new GridLayout(4, 1, 10, 0));
-        tbModel = new DefaultTableModel(0,0);
-        String[] header = {"Item", "Quantity", "Price"};
-        tbModel.setColumnIdentifiers(header);
-        JTable table = new JTable(tbModel);
+        tableModel = new DefaultTableModel(0,0);
+        String[] header = {"Product ID", "Product", "Quantity", "Price"};
+        tableModel.setColumnIdentifiers(header);
+        JTable table = new JTable(tableModel);
         JScrollPane jsTable = new JScrollPane(table);
         jsTable.setVisible(true);
 
@@ -44,15 +40,6 @@ public class Cart extends Frame implements DataListener {
     }
 
     public void dataChanged() {
-        tbModel.setRowCount(1);
-        populateCart();
-    }
-
-    public void populateCart() {
-        for (Map.Entry<String, Integer> entry : dataModel.inCart.entrySet()) {
-            String key = entry.getKey();
-            int qty = entry.getValue();
-            tbModel.addRow(new Object[] {dataModel.inventory.get(key).getName(), qty, String.format("%.2f", (dataModel.inventory.get(key).getPrice() * qty))});
-        }
+        tableModel.setRowCount(1);
     }
 }
