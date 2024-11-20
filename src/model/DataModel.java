@@ -62,6 +62,8 @@ public class DataModel {
             calTotal += (double) cart.tableModel.getValueAt(i, 3);
         }
         cart.subtotal = calTotal;
+        cart.grandtotalWithDiscount = calTotal * (1 - ((double) shop.getDiscount() / 100)) * (1 + ((double) shop.getTaxRate() / 100));
+        cart.grandtotalWithDiscount = calTotal * (1 + ((double) shop.getTaxRate()));
         cart.checkDiscountSetTotal(); // calculate grand total w/ discount
     }
 

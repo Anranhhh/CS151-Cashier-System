@@ -18,6 +18,7 @@ public class Cart extends JFrame {
     public Double discountPercent;
     public double subtotal;
     public double grandtotal;
+    public double grandtotalWithDiscount;
 
     public Cart() {
         JPanel panel = new JPanel();
@@ -104,12 +105,8 @@ public class Cart extends JFrame {
     }
 
     public void checkDiscountSetTotal() {
-        if (discountCheck.isSelected()) {
-            grandtotal = subtotal * (1 - discountPercent) * (1 + taxPercent);
-        } else {
-            grandtotal = subtotal * (1 + taxPercent);
-        }
-        totalPriceLabel.setText("<html><b><font size=\"4\">$" + String.format("%.2f", grandtotal) + "</font></html></b>");
+        double t = discountCheck.isSelected() ? grandtotalWithDiscount : grandtotal;
+        totalPriceLabel.setText("<html><b><font size=\"4\">$" + String.format("%.2f", t) + "</font></html></b>");
     }
 
     public void reset() {
