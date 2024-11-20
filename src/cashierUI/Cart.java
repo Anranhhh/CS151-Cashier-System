@@ -25,7 +25,12 @@ public class Cart extends JFrame {
         panel.setPreferredSize(new Dimension(600, 700));
         GridBagConstraints gbc = new GridBagConstraints();
         panel.setLayout(new GridBagLayout());
-        tableModel = new DefaultTableModel(0,0);
+        tableModel = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         String[] header = {"Product ID", "Product", "Quantity", "Price"};
         tableModel.setColumnIdentifiers(header);
         JTable table = new JTable(tableModel);

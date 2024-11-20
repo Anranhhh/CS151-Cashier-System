@@ -1,18 +1,16 @@
 package model;
 
 import cashierUI.Cart;
-import domain.DataListener;
 import domain.Item;
 import domain.ShopInfo;
 
 import java.util.HashMap;
 
-public class DataModel implements DataListener {
+public class DataModel {
     private HashMap<String, Item> inventory;
     private HashMap<String, Integer> inCart;
     private Cart cart;
     public static ShopInfo shop;
-    // one more variable to store location/tax/discount info (or read directly from JSON?)
 
     public DataModel() {
         inCart = new HashMap<>();
@@ -55,14 +53,14 @@ public class DataModel implements DataListener {
         calculateTotals();
     }
 
-    // run this when table is edited
+    // run this when table is edited at all
+    // a little inefficient: lots of loops -> thoughts?
     public void calculateTotals() {
         // calculate subtotal by looping price column in table
         double calTotal = 0;
         for (int i = 0; i < cart.tableModel.getRowCount(); i++) {
             calTotal += (double) cart.tableModel.getValueAt(i, 3);
         }
-
         cart.subtotal = calTotal;
         cart.checkDiscountSetTotal(); // calculate grand total w/ discount
     }
@@ -71,6 +69,7 @@ public class DataModel implements DataListener {
     // need to check for input mismatch
     public void removeItem(String id) {
         cart.tableModel.removeRow(inCart.remove(id));
+        calculateTotals();
     }
 
     // when cashier clocks out, reset all UIs
@@ -78,11 +77,5 @@ public class DataModel implements DataListener {
         cart.reset();
         inCart.clear();
         inventory.clear();
-    }
-
-    // might not even need a dataListener?
-    @Override
-    public void dataChanged() {
-        System.out.println("Not for use in this class.");
     }
 }
