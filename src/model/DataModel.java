@@ -10,7 +10,7 @@ public class DataModel {
     private HashMap<String, Item> inventory;
     private HashMap<String, Integer> inCart;
     private Cart cart;
-    public static ShopInfo shop;
+    public ShopInfo shop;
 
     public DataModel() {
         inCart = new HashMap<>();
