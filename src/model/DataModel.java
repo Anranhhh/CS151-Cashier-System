@@ -1,5 +1,7 @@
 package model;
 
+/// Line 19, 39, 73 needs addressing
+
 import cashierUI.Cart;
 import domain.Item;
 import domain.ShopInfo;
@@ -14,7 +16,7 @@ public class DataModel {
 
     public DataModel() {
         inCart = new HashMap<>();
-        cart = new Cart();
+        cart = new Cart(this); // might not need to pass model, depends: receipt
     }
 
     // run this when new JSON is fed

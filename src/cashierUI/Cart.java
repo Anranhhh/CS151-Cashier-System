@@ -1,5 +1,9 @@
 package cashierUI;
 
+/// Lines 29 and 76 needs addressing
+
+import model.DataModel;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -7,6 +11,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class Cart extends JFrame {
+    public DataModel model;
     public DefaultTableModel tableModel;
     public JPanel summaryPanel;
     public JLabel subtotalPriceLabel;
@@ -20,7 +25,8 @@ public class Cart extends JFrame {
     public double grandtotal;
     public double grandtotalWithDiscount;
 
-    public Cart() {
+    public Cart(DataModel model) {
+        this.model = model; // MAYBE OPTIONAL? I'M NOT SURE WHAT YOU NEED FOR RECEIPT
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(600, 700));
         GridBagConstraints gbc = new GridBagConstraints();
@@ -66,6 +72,9 @@ public class Cart extends JFrame {
         totalPriceLabel = new JLabel("", SwingConstants.RIGHT);
         JLabel blankLabel = new JLabel();
         JButton checkout = new JButton("PRINT");
+        checkout.addActionListener(e -> {
+            new Receipt(model); // WHAT DO YOU WANT ME TO PASS TO YOU?
+        });
 
         // add components to summary panel
         summaryPanel.add(subtotalLabel);
@@ -109,8 +118,8 @@ public class Cart extends JFrame {
         totalPriceLabel.setText("<html><b><font size=\"4\">$" + String.format("%.2f", t) + "</font></html></b>");
     }
 
+    // clear table and hide summary panel
     public void reset() {
-        // clear table and hide summary panel
         discountPercent = null;
         taxPercent = null;
         subtotal = 0;
