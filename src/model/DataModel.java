@@ -26,7 +26,7 @@ public class DataModel {
         cart.discountPercent = (double) shop.getDiscount() / 100;
         cart.locationInfoLabel.setText("Sales Tax(" + shop + "):");
         cart.salesTaxLabel.setText(shop.getTaxRate() + "%");
-        cart.discountLabel.setText("Discount Available: " + shop.getDiscount() + "%");
+        cart.discountCheck.setText(shop.getDiscount() + "% ");
     }
 
     public void loadInventory() {

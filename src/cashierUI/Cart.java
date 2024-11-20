@@ -12,7 +12,6 @@ public class Cart extends JFrame {
     public JLabel subtotalPriceLabel;
     public JLabel locationInfoLabel;
     public JLabel salesTaxLabel;
-    public JLabel discountLabel;
     public JCheckBox discountCheck;
     public JLabel totalPriceLabel;
     public Double taxPercent;
@@ -55,8 +54,10 @@ public class Cart extends JFrame {
         subtotalPriceLabel = new JLabel("", SwingConstants.RIGHT);
         locationInfoLabel = new JLabel("");
         salesTaxLabel = new JLabel("", SwingConstants.RIGHT);
-        discountLabel = new JLabel("");
-        discountCheck = new JCheckBox();
+        JLabel discountLabel = new JLabel("Discount Available:");
+        discountCheck = new JCheckBox("");
+        discountCheck.setHorizontalTextPosition(SwingConstants.LEFT);
+        discountCheck.setHorizontalAlignment(SwingConstants.RIGHT);
         discountCheck.addActionListener(e -> {
             checkDiscountSetTotal();
         });
