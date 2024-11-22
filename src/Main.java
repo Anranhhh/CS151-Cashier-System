@@ -8,13 +8,7 @@ import java.awt.*;
 public class Main {
     public static void main(String[] args) {
         DataModel model = new DataModel(); // CART is in here
-        cartTest(model);
 
-    }
-
-
-    // TEST FOR CART: FRAME2
-    public static void cartTest(DataModel model) {
         Item teddy = new Item("Teddy Bear", 5.50); // ID 0001
         Item candy = new Item("Candy", 1.5); // ID 0002
         Item iphone = new Item("iPhone", 1119.99); // ID 0003
@@ -26,6 +20,14 @@ public class Main {
         model.testLOADINVENTORY("0002", candy);
         model.testLOADINVENTORY("0003", iphone);
         model.testLOADINVENTORY("0004", tv);
+        cartTest(model);
+
+    }
+
+
+    // TEST FOR CART: FRAME2
+    public static void cartTest(DataModel model) {
+
 
         JFrame testFrame = new JFrame("Test Frame");
         JButton button1 = new JButton("Add 0001");
