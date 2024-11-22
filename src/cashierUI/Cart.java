@@ -52,18 +52,18 @@ public class Cart extends JFrame {
         // initialize summary components
         summaryPanel = new JPanel();
         summaryPanel.setLayout(new GridLayout(5, 2));
-        JLabel subtotalLabel = new JLabel("Subtotal:");
+        JLabel subtotalLabel = new JLabel("Subtotal:", SwingConstants.RIGHT);
         subtotalPriceLabel = new JLabel("", SwingConstants.RIGHT);
-        locationInfoLabel = new JLabel("#No Store Info Found#");
+        locationInfoLabel = new JLabel("#No Store Info Found#", SwingConstants.RIGHT);
         salesTaxLabel = new JLabel("", SwingConstants.RIGHT);
-        JLabel discountLabel = new JLabel("Discount Available:");
+        JLabel discountLabel = new JLabel("Discount Available:", SwingConstants.RIGHT);
         discountCheck = new JCheckBox("");
         discountCheck.setHorizontalTextPosition(SwingConstants.LEFT);
         discountCheck.setHorizontalAlignment(SwingConstants.RIGHT);
         discountCheck.addActionListener(e -> {
             checkDiscountSetTotal();
         });
-        JLabel totalLabel = new JLabel("<html><b><font size=\"4\">TOTAL:</font></html></b>");
+        JLabel totalLabel = new JLabel("<html><b><font size=\"4\">TOTAL:</font></html></b>", SwingConstants.RIGHT);
         totalPriceLabel = new JLabel("", SwingConstants.RIGHT);
         JLabel blankLabel = new JLabel();
         JButton checkout = new JButton("PRINT");
