@@ -73,7 +73,7 @@ public class Cart extends JFrame {
         JLabel blankLabel = new JLabel();
         JButton checkout = new JButton("PRINT");
         checkout.addActionListener(e -> {
-            new Receipt(model); // WHAT DO YOU WANT ME TO PASS TO YOU?
+            // WHAT DO YOU WANT ME TO PASS TO YOU?
         });
 
         // add components to summary panel
