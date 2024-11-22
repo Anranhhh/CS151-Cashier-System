@@ -121,7 +121,7 @@ private void setupReceiptButton(Inventory inventory) {
                 firstNameField.getText() + " " + lastNameField.getText()
         );
 
-        // Example items to add to the receipt (Replace with actual logic to retrieve invoice items)
+        // Example items to add to the receipt
         receipt.addItem("Apples", "01145", 3, 2.5);
         receipt.addItem("Bananas", "01151", 2, 1.2);
 
