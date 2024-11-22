@@ -56,7 +56,7 @@ public class Cart extends JFrame {
         summaryPanel.setLayout(new GridLayout(5, 2));
         JLabel subtotalLabel = new JLabel("Subtotal:");
         subtotalPriceLabel = new JLabel("", SwingConstants.RIGHT);
-        locationInfoLabel = new JLabel("");
+        locationInfoLabel = new JLabel("#No Store Info Found#");
         salesTaxLabel = new JLabel("", SwingConstants.RIGHT);
         JLabel discountLabel = new JLabel("Discount Available:");
         discountCheck = new JCheckBox("");
@@ -70,7 +70,7 @@ public class Cart extends JFrame {
         JLabel blankLabel = new JLabel();
         JButton checkout = new JButton("PRINT");
         checkout.addActionListener(e -> {
-            new Receipt(model); // WHAT DO YOU WANT ME TO PASS TO YOU?
+            //new Receipt(model);
         });
 
         // add components to summary panel
@@ -84,7 +84,7 @@ public class Cart extends JFrame {
         summaryPanel.add(totalPriceLabel);
         summaryPanel.add(blankLabel);
         summaryPanel.add(checkout);
-        summaryPanel.setVisible(false);
+        summaryPanel.setVisible(true);
 
         // gbc initialize for order summary
         gbc.gridx = 1;
@@ -98,6 +98,7 @@ public class Cart extends JFrame {
         panel.add(summaryPanel, gbc);
 
         // frame stuff
+        this.add(panel);
         this.setTitle("Shopping Cart");
         this.pack();
         this.setLocationRelativeTo(null);
@@ -111,7 +112,7 @@ public class Cart extends JFrame {
     }
 
     public void checkDiscountSetTotal() {
-        subtotalPriceLabel.setText(String.format("%.2f", model.subtotal));
+        subtotalPriceLabel.setText("$" + String.format("%.2f", model.subtotal));
         double t = discountCheck.isSelected() ? model.grandtotalWithDiscount : model.grandtotal;
         totalPriceLabel.setText("<html><b><font size=\"4\">$" + String.format("%.2f", t) + "</font></html></b>");
     }

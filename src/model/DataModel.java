@@ -19,6 +19,7 @@ public class DataModel {
 
     public DataModel() {
         inCart = new HashMap<>();
+        inventory = new HashMap<>();
         cart = new Cart(this); // might not need to pass model, depends: receipt
     }
 
@@ -29,13 +30,19 @@ public class DataModel {
         // things to fire when JSON is read
         cart.taxPercent = (double) shop.getTaxRate() / 100;
         cart.discountPercent = (double) shop.getDiscount() / 100;
-        cart.locationInfoLabel.setText("Sales Tax(" + shop + "):");
+        cart.locationInfoLabel.setText("Sales Tax (" + shop + ") :");
         cart.salesTaxLabel.setText(shop.getTaxRate() + "%");
         cart.discountCheck.setText(shop.getDiscount() + "% ");
     }
 
     public void loadInventory() {
         // load from JSON
+    }
+
+    // THIS IS A TEST METHOD CREATED JUST FOR TESTING.
+    // !!!! DO NOT USE TO CODE !!!!
+    public void testLOADINVENTORY(String id, Item item) {
+        inventory.put(id, item);
     }
 
     // when item ID and qty is entered in textField, fire this
@@ -64,11 +71,11 @@ public class DataModel {
         // calculate subtotal by looping price column in table
         double calcTotal = 0;
         for (int i = 0; i < cart.tableModel.getRowCount(); i++) {
-            calcTotal += (double) cart.tableModel.getValueAt(i, 3);
+            calcTotal += Double.parseDouble(cart.tableModel.getValueAt(i, 3).toString());
         }
         subtotal = calcTotal;
-        grandtotalWithDiscount = calcTotal * (1 - ((double) shop.getDiscount() / 100)) * (1 + ((double) shop.getTaxRate() / 100));
-        grandtotalWithDiscount = calcTotal * (1 + ((double) shop.getTaxRate()));
+        grandtotalWithDiscount = calcTotal * (1 - (shop.getDiscount() / 100)) * (1 + (shop.getTaxRate() / 100));
+        grandtotal = calcTotal * (1 + (shop.getTaxRate() / 100));
         cart.checkDiscountSetTotal(); // calculate grand total w/ discount
     }
 
