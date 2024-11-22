@@ -30,11 +30,11 @@ public class Main {
         JFrame testFrame = new JFrame("Test Frame");
         JButton button1 = new JButton("Add 0001");
         button1.addActionListener(e -> {
-            model.addItemToCart("0001", 3);
+            model.addItemToCart("0001", 1);
         });
         JButton button2 = new JButton("Add 0002");
         button2.addActionListener(e -> {
-            model.addItemToCart("0002", 7);
+            model.addItemToCart("0002", 1);
         });
         JButton button3 = new JButton("Add 0003");
         button3.addActionListener(e -> {
@@ -42,7 +42,7 @@ public class Main {
         });
         JButton button4 = new JButton("Add 0004");
         button4.addActionListener(e -> {
-            model.addItemToCart("0004", 2);
+            model.addItemToCart("0004", 1);
         });
         testFrame.setLayout(new FlowLayout());
 
