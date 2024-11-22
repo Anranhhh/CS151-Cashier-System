@@ -1,3 +1,5 @@
+package cashierUI;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -76,6 +78,7 @@ public class Receipt {
         System.out.println(receipt.toString());
     }
 }
+/*
 public class ReceiptItem {
     private String productName;
     private String productCode;
@@ -133,4 +136,4 @@ private void setupReceiptButton(Inventory inventory) {
     });
 
     panel.add(printReceiptButton);
-}
+}*/
