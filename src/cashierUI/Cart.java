@@ -1,7 +1,5 @@
 package cashierUI;
 
-/// Lines 29 and 76 needs addressing
-
 import model.DataModel;
 
 import javax.swing.*;

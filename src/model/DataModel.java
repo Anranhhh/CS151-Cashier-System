@@ -1,7 +1,5 @@
 package model;
 
-/// Line 19, 39, 73 needs addressing
-
 import cashierUI.Cart;
 import domain.Item;
 import domain.ShopInfo;
