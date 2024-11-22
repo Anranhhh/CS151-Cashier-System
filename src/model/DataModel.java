@@ -13,6 +13,9 @@ public class DataModel {
     private HashMap<String, Integer> inCart;
     private Cart cart;
     public ShopInfo shop;
+    public double subtotal;
+    public double grandtotal;
+    public double grandtotalWithDiscount;
 
     public DataModel() {
         inCart = new HashMap<>();
@@ -59,13 +62,13 @@ public class DataModel {
     // a little inefficient: lots of loops -> thoughts?
     public void calculateTotals() {
         // calculate subtotal by looping price column in table
-        double calTotal = 0;
+        double calcTotal = 0;
         for (int i = 0; i < cart.tableModel.getRowCount(); i++) {
-            calTotal += (double) cart.tableModel.getValueAt(i, 3);
+            calcTotal += (double) cart.tableModel.getValueAt(i, 3);
         }
-        cart.subtotal = calTotal;
-        cart.grandtotalWithDiscount = calTotal * (1 - ((double) shop.getDiscount() / 100)) * (1 + ((double) shop.getTaxRate() / 100));
-        cart.grandtotalWithDiscount = calTotal * (1 + ((double) shop.getTaxRate()));
+        subtotal = calcTotal;
+        grandtotalWithDiscount = calcTotal * (1 - ((double) shop.getDiscount() / 100)) * (1 + ((double) shop.getTaxRate() / 100));
+        grandtotalWithDiscount = calcTotal * (1 + ((double) shop.getTaxRate()));
         cart.checkDiscountSetTotal(); // calculate grand total w/ discount
     }
 
@@ -78,6 +81,9 @@ public class DataModel {
 
     // when cashier clocks out, reset all UIs
     public void resetCart() {
+        subtotal = 0;
+        grandtotal = 0;
+        grandtotalWithDiscount = 0;
         cart.reset();
         inCart.clear();
         inventory.clear();

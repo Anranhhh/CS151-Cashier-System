@@ -21,9 +21,6 @@ public class Cart extends JFrame {
     public JLabel totalPriceLabel;
     public Double taxPercent;
     public Double discountPercent;
-    public double subtotal;
-    public double grandtotal;
-    public double grandtotalWithDiscount;
 
     public Cart(DataModel model) {
         this.model = model; // MAYBE OPTIONAL? I'M NOT SURE WHAT YOU NEED FOR RECEIPT
@@ -73,7 +70,7 @@ public class Cart extends JFrame {
         JLabel blankLabel = new JLabel();
         JButton checkout = new JButton("PRINT");
         checkout.addActionListener(e -> {
-            // WHAT DO YOU WANT ME TO PASS TO YOU?
+            new Receipt(model); // WHAT DO YOU WANT ME TO PASS TO YOU?
         });
 
         // add components to summary panel
@@ -114,7 +111,8 @@ public class Cart extends JFrame {
     }
 
     public void checkDiscountSetTotal() {
-        double t = discountCheck.isSelected() ? grandtotalWithDiscount : grandtotal;
+        subtotalPriceLabel.setText(String.format("%.2f", model.subtotal));
+        double t = discountCheck.isSelected() ? model.grandtotalWithDiscount : model.grandtotal;
         totalPriceLabel.setText("<html><b><font size=\"4\">$" + String.format("%.2f", t) + "</font></html></b>");
     }
 
@@ -122,8 +120,7 @@ public class Cart extends JFrame {
     public void reset() {
         discountPercent = null;
         taxPercent = null;
-        subtotal = 0;
-        grandtotal = 0;
+        model = null;
         tableModel.setRowCount(0);
         discountCheck.setSelected(false);
         subtotalPriceLabel.setText("");
