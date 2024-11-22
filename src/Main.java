@@ -44,12 +44,31 @@ public class Main {
         button4.addActionListener(e -> {
             model.addItemToCart("0004", 1);
         });
-        testFrame.setLayout(new FlowLayout());
-
+        JButton Rbutton1 = new JButton("Remove 0001");
+        Rbutton1.addActionListener(e -> {
+            model.removeItem("0001");
+        });
+        JButton Rbutton2 = new JButton("Remove 0002");
+        Rbutton2.addActionListener(e -> {
+            model.removeItem("0002");
+        });
+        JButton Rbutton3 = new JButton("Remove 0003");
+        Rbutton3.addActionListener(e -> {
+            model.removeItem("0003");
+        });
+        JButton Rbutton4 = new JButton("Remove 0004");
+        Rbutton4.addActionListener(e -> {
+            model.removeItem("0004");
+        });
+        testFrame.setLayout(new GridLayout(2, 4));
         testFrame.add(button1);
         testFrame.add(button2);
         testFrame.add(button3);
         testFrame.add(button4);
+        testFrame.add(Rbutton1);
+        testFrame.add(Rbutton2);
+        testFrame.add(Rbutton3);
+        testFrame.add(Rbutton4);
 
         testFrame.pack();
         testFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

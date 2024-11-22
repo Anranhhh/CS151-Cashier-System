@@ -6,11 +6,14 @@ import cashierUI.Cart;
 import domain.Item;
 import domain.ShopInfo;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class DataModel {
     private HashMap<String, Item> inventory;
-    private HashMap<String, Integer> inCart;
+    private Map<String, Integer> inCart; // separate ArrayList of rowIndex might be faster
     private Cart cart;
     public ShopInfo shop;
     public double subtotal;
@@ -18,7 +21,7 @@ public class DataModel {
     public double grandtotalWithDiscount;
 
     public DataModel() {
-        inCart = new HashMap<>();
+        inCart = new LinkedHashMap<>();
         inventory = new HashMap<>();
         cart = new Cart(this); // might not need to pass model, depends: receipt
     }
@@ -45,28 +48,29 @@ public class DataModel {
         inventory.put(id, item);
     }
 
-    // when item ID and qty is entered in textField, fire this
+    // when item ID and amount is entered in textField, fire this
     // might need to check for input mismatch
-    public void addItemToCart(String id, int qty) {
-        Integer row;
-        if ((row = inCart.putIfAbsent(id, cart.tableModel.getRowCount())) == null) {
+    public void addItemToCart(String id, int amount) {
+        Integer qty;
+        if ((qty = inCart.putIfAbsent(id, amount)) == null) {
             // create new row in table
             cart.tableModel.addRow(new Object[] {
                     id,
                     inventory.get(id).getName(),
-                    qty,
-                    String.format("%.2f", (inventory.get(id).getPrice() * qty))
+                    amount,
+                    String.format("%.2f", (inventory.get(id).getPrice() * amount))
             });
         } else { // update row in table with new values
-            int currQty = (int) cart.tableModel.getValueAt(row, 2) + qty;
-            cart.tableModel.setValueAt(currQty, row, 2);
-            cart.tableModel.setValueAt(inventory.get(id).getPrice() * currQty, row, 3);
+            int newQty = qty + amount;
+            inCart.put(id, newQty);
+            int row = new ArrayList<>(inCart.keySet()).indexOf(id);
+            cart.tableModel.setValueAt(newQty, row, 2);
+            cart.tableModel.setValueAt(inventory.get(id).getPrice() * newQty, row, 3);
         }
         calculateTotals();
     }
 
     // run this when table is edited at all
-    // a little inefficient: lots of loops -> thoughts?
     public void calculateTotals() {
         // calculate subtotal by looping price column in table
         double calcTotal = 0;
@@ -81,8 +85,10 @@ public class DataModel {
 
     // if remove button is clicked, fire this
     // need to check for input mismatch
+    // might not be efficient due to keySet loop. Consider separate arraylist
     public void removeItem(String id) {
-        cart.tableModel.removeRow(inCart.remove(id));
+        cart.tableModel.removeRow(new ArrayList<>(inCart.keySet()).indexOf(id));
+        inCart.remove(id);
         calculateTotals();
     }
 
