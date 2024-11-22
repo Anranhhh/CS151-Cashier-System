@@ -70,7 +70,8 @@ public class Cart extends JFrame {
         JLabel blankLabel = new JLabel();
         JButton checkout = new JButton("PRINT");
         checkout.addActionListener(e -> {
-            //new Receipt(model);
+            JFrame tempPrint = new JFrame();
+            JOptionPane.showMessageDialog(tempPrint, "Work in Progress!");
         });
 
         // add components to summary panel
