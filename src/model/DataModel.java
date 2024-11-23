@@ -25,12 +25,11 @@ public class DataModel {
     }
 
     // run this when new JSON is fed
-    public void updateStoreInfo() {
-        cart.summaryPanel.setVisible(true);
+    public void updateStoreInfo(ShopInfo shop) {
+        resetCart();
 
         // things to fire when JSON is read
-        cart.taxPercent = (double) shop.getTaxRate() / 100;
-        cart.discountPercent = (double) shop.getDiscount() / 100;
+        this.shop = shop;
         cart.locationInfoLabel.setText("Sales Tax (" + shop + ") :");
         cart.salesTaxLabel.setText(shop.getTaxRate() + "%");
         cart.discountCheck.setText(shop.getDiscount() + "% ");
@@ -91,12 +90,18 @@ public class DataModel {
     }
 
     // when cashier clocks out, reset all UIs
+    // when different JSON initialized
     public void resetCart() {
+        shop = null;
+        inventory.clear();
+        clearCart();
+    }
+
+    public void clearCart() {
         subtotal = 0;
         grandtotal = 0;
         grandtotalWithDiscount = 0;
         cart.reset();
         inCart.clear();
-        inventory.clear();
     }
 }

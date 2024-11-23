@@ -17,8 +17,6 @@ public class Cart extends JFrame {
     public JLabel salesTaxLabel;
     public JCheckBox discountCheck;
     public JLabel totalPriceLabel;
-    public Double taxPercent;
-    public Double discountPercent;
 
     public Cart(DataModel model) {
         this.model = model; // MAYBE OPTIONAL? I'M NOT SURE WHAT YOU NEED FOR RECEIPT
@@ -65,7 +63,10 @@ public class Cart extends JFrame {
         });
         JLabel totalLabel = new JLabel("<html><b><font size=\"4\">TOTAL:</font></html></b>", SwingConstants.RIGHT);
         totalPriceLabel = new JLabel("", SwingConstants.RIGHT);
-        JLabel blankLabel = new JLabel();
+        JButton clearCart = new JButton(("CLEAR"));
+        clearCart.addActionListener(e -> {
+            model.clearCart();
+        });
         JButton checkout = new JButton("PRINT");
         checkout.addActionListener(e -> {
             JFrame tempPrint = new JFrame();
@@ -81,7 +82,7 @@ public class Cart extends JFrame {
         summaryPanel.add(discountCheck);
         summaryPanel.add(totalLabel);
         summaryPanel.add(totalPriceLabel);
-        summaryPanel.add(blankLabel);
+        summaryPanel.add(clearCart);
         summaryPanel.add(checkout);
         summaryPanel.setVisible(true);
 
@@ -116,15 +117,11 @@ public class Cart extends JFrame {
         totalPriceLabel.setText("<html><b><font size=\"4\">$" + String.format("%.2f", t) + "</font></html></b>");
     }
 
-    // clear table and hide summary panel
+    // clear table UI
     public void reset() {
-        discountPercent = null;
-        taxPercent = null;
-        model = null;
         tableModel.setRowCount(0);
         discountCheck.setSelected(false);
         subtotalPriceLabel.setText("");
         totalPriceLabel.setText("");
-        summaryPanel.setVisible(false);
     }
 }

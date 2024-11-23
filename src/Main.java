@@ -14,8 +14,7 @@ public class Main {
         Item iphone = new Item("iPhone", 1119.99); // ID 0003
         Item tv = new Item("TV", 3581.26); // ID 0004
         ShopInfo shopInfo = new ShopInfo("San Jose", "CA", 9.38, 10, "(408) 924-1000");
-        model.shop = shopInfo;
-        model.updateStoreInfo();
+        model.updateStoreInfo(shopInfo);
         model.testLOADINVENTORY("0001", teddy); // THIS IS A TEST METHOD CREATED JUST FOR TESTING
         model.testLOADINVENTORY("0002", candy);
         model.testLOADINVENTORY("0003", iphone);
