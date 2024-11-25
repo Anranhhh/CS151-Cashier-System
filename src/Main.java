@@ -1,6 +1,3 @@
-import com.google.gson.Gson;
-import domain.Item;
-import domain.ShopInfo;
 import model.DataModel;
 
 import javax.swing.*;
