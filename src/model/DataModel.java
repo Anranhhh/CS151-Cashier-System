@@ -1,16 +1,24 @@
 package model;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
 import cashierUI.Cart;
+import com.google.gson.reflect.TypeToken;
 import domain.Item;
 import domain.ShopInfo;
-
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+
 public class DataModel {
-    private HashMap<String, Item> inventory;
+    private Map<String, Item> inventory;
     private Map<String, Integer> inCart; // separate ArrayList of rowIndex might be faster
     private Cart cart;
     public ShopInfo shop;
@@ -22,21 +30,26 @@ public class DataModel {
         inCart = new LinkedHashMap<>();
         inventory = new HashMap<>();
         cart = new Cart(this); // might not need to pass model, depends: receipt
+
     }
 
     // run this when new JSON is fed
-    public void updateStoreInfo(ShopInfo shop) {
+    public void updateJSON() {
         resetCart();
 
+        Gson gson = new Gson();
+        try (BufferedReader br = new BufferedReader(new FileReader("Store.json"))) {
+            JsonObject jsonData = gson.fromJson(br, JsonObject.class);
+            shop = gson.fromJson(jsonData.get("shop"), ShopInfo.class);
+            Type itemMapType = new TypeToken<Map<String, Item>>(){}.getType();
+            inventory = gson.fromJson(jsonData.get("inventory"), itemMapType);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         // things to fire when JSON is read
-        this.shop = shop;
         cart.locationInfoLabel.setText("Sales Tax (" + shop + ") :");
         cart.salesTaxLabel.setText(shop.getTaxRate() + "%");
         cart.discountCheck.setText(shop.getDiscount() + "% ");
-    }
-
-    public void loadInventory() {
-        // load from JSON
     }
 
     // THIS IS A TEST METHOD CREATED JUST FOR TESTING.

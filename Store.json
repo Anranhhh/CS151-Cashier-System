@@ -1,0 +1,27 @@
+{
+  "shop": {
+    "city": "San Jose",
+    "state": "CA",
+    "taxRate": 9.38,
+    "discount": 10,
+    "contact": "(408) 924-1000"
+  },
+  "inventory": {
+    "T3DDY": {
+      "name": "Teddy Bear",
+      "price": 15.67
+    },
+    "C4NDY": {
+      "name": "Candy",
+      "price": 1.5
+    },
+    "IP14M": {
+      "name": "iPhone 14 Max",
+      "price": 1119.99
+    },
+    "OLEDT": {
+      "name": "OLED TV",
+      "price": 3581.26
+    }
+  }
+}
