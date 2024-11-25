@@ -19,8 +19,8 @@ import java.util.Map;
 
 public class DataModel {
     private Map<String, Item> inventory;
-    private Map<String, Integer> inCart; // separate ArrayList of rowIndex might be faster
-    private Cart cart;
+    private final Map<String, Integer> inCart;
+    private final Cart cart;
     public ShopInfo shop;
     public double subtotal;
     public double grandtotal;
@@ -29,7 +29,7 @@ public class DataModel {
     public DataModel() {
         inCart = new LinkedHashMap<>();
         inventory = new HashMap<>();
-        cart = new Cart(this); // might not need to pass model, depends: receipt
+        cart = new Cart(this);
 
     }
 
@@ -46,16 +46,10 @@ public class DataModel {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        // things to fire when JSON is read
+
         cart.locationInfoLabel.setText("Sales Tax (" + shop + ") :");
         cart.salesTaxLabel.setText(shop.getTaxRate() + "%");
         cart.discountCheck.setText(shop.getDiscount() + "% ");
-    }
-
-    // THIS IS A TEST METHOD CREATED JUST FOR TESTING.
-    // !!!! DO NOT USE TO CODE !!!!
-    public void testLOADINVENTORY(String id, Item item) {
-        inventory.put(id, item);
     }
 
     // when item ID and amount is entered in textField, fire this
@@ -95,7 +89,7 @@ public class DataModel {
 
     // if remove button is clicked, fire this
     // need to check for input mismatch
-    // might not be efficient due to keySet loop. Consider separate arraylist
+    // might not be efficient due to keySet loop
     public void removeItem(String id) {
         cart.tableModel.removeRow(new ArrayList<>(inCart.keySet()).indexOf(id));
         inCart.remove(id);
