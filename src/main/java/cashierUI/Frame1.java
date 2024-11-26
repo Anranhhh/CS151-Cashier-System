@@ -1,4 +1,4 @@
-package ShiftFrame;
+package cashierUI;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
