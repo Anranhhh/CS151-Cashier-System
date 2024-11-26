@@ -69,7 +69,7 @@ public class DataModel {
             inCart.put(id, newQty);
             int row = new ArrayList<>(inCart.keySet()).indexOf(id);
             cart.tableModel.setValueAt(newQty, row, 2);
-            cart.tableModel.setValueAt(inventory.get(id).getPrice() * newQty, row, 3);
+            cart.tableModel.setValueAt(String.format("%.2f", inventory.get(id).getPrice() * newQty), row, 3);
         }
         calculateTotals();
     }
