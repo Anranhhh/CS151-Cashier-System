@@ -26,10 +26,6 @@ import org.json.*;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import ShiftFrame.Frame1;
-import cashierUI.Cart;
-import domain.Item;
-import domain.ShopInfo;
 import model.DataModel;
 
 
