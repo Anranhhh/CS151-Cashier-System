@@ -2,9 +2,9 @@ package model;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 
 import cashierUI.Cart;
-import com.google.gson.reflect.TypeToken;
 import domain.Item;
 import domain.ShopInfo;
 import java.io.BufferedReader;

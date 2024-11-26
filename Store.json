@@ -7,6 +7,10 @@
     "contact": "(408) 924-1000"
   },
   "inventory": {
+    "PRODUCTID": {
+      "name": "PRODUCT NAME",
+      "price": 55.55
+    },
     "T3DDY": {
       "name": "Teddy Bear",
       "price": 15.67
