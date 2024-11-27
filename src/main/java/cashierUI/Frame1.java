@@ -16,7 +16,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 
-import ShiftFrame.Frame1;
 import model.DataModel;
 
 
@@ -137,6 +136,9 @@ public class Frame1 extends JFrame{
         itemPanel.add(addItemPanel, BorderLayout.NORTH);
         itemPanel.add(removeItemPanel, BorderLayout.SOUTH);
         add(itemPanel, BorderLayout.SOUTH);
+
+        this.pack();
+        this.setVisible(true);
     }
     
     public class shiftStartListener implements ActionListener{
@@ -192,13 +194,5 @@ public class Frame1 extends JFrame{
     		productFrame.add(panel, BorderLayout.CENTER);
     		productFrame.setVisible(true);
     	}
-    }
-
-    
-    public static void main(String[] args) {
-    	DataModel model = new DataModel(); // CART is in here
-    	Frame1 frame = new Frame1(model);
-    	frame.setVisible(true);
-            
     }
 }

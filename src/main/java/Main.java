@@ -1,3 +1,4 @@
+import cashierUI.Frame1;
 import model.DataModel;
 
 import javax.swing.*;
@@ -6,8 +7,7 @@ import java.awt.*;
 public class Main {
     public static void main(String[] args) {
         DataModel model = new DataModel(); // CART is in here
-        model.updateJSON();
-        cartTest(model);
+        Frame1 shiftFrame = new Frame1(model);
     }
 
 
