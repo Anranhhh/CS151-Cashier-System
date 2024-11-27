@@ -95,7 +95,7 @@ public class Frame1 extends JFrame{
         
         JTextField codeField = new JTextField();
         JTextField qtyField = new JTextField();
-        JTextField itemLine = new JTextField();
+        JTextField removeCodeField = new JTextField();
         JButton addButton = new JButton("Add");
         JButton removeButton = new JButton("Remove");
         JPanel itemPanel = new JPanel();
@@ -111,7 +111,7 @@ public class Frame1 extends JFrame{
         addItemPanel.add(qtyField);
         addItemPanel.add(addButton);
         removeItemPanel.add(new JLabel("Item #: "));
-        removeItemPanel.add(itemLine);
+        removeItemPanel.add(removeCodeField);
         removeItemPanel.add(removeButton);
         
         // ActionListener to add new items into the cart
@@ -128,8 +128,10 @@ public class Frame1 extends JFrame{
         	model.addItemToCart(code, qtyNumber);
         });
         
+        // ActionLintener to remove added items from the cart
         removeButton.addActionListener(e ->{
-        	
+        	String removeCode = removeCodeField.getText().trim();
+        	model.removeItem(removeCode);
         });
         
         itemPanel.add(addItemPanel, BorderLayout.NORTH);
@@ -197,5 +199,6 @@ public class Frame1 extends JFrame{
     	DataModel model = new DataModel(); // CART is in here
     	Frame1 frame = new Frame1(model);
     	frame.setVisible(true);
+            
     }
 }
