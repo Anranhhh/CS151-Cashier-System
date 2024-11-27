@@ -5,14 +5,8 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -22,10 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 
-import org.json.*;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
+import ShiftFrame.Frame1;
 import model.DataModel;
 
 
@@ -40,9 +31,8 @@ public class Frame1 extends JFrame{
     
     private JButton loadButton;
     private JButton showButton;
-    private List<Map<String, String>> inventoryList = new ArrayList<>();
     
-    public Frame1() {
+    public Frame1(DataModel model) {
     	setTitle("Cashier Shift Management");
         setSize(400, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -90,8 +80,10 @@ public class Frame1 extends JFrame{
         loadButton = new JButton("Load Inventory");
         showButton = new JButton("Show Products");
         
-        // add ActionListener
-        loadButton.addActionListener(new loadButtonListener());
+        // add ActionListener to load and show the inventory
+        loadButton.addActionListener(e -> {
+        	model.updateJSON();
+        });
         showButton.addActionListener(new showButtonListener());
         
         panel2.add(loadButton);
@@ -122,6 +114,7 @@ public class Frame1 extends JFrame{
         removeItemPanel.add(itemLine);
         removeItemPanel.add(removeButton);
         
+        // ActionListener to add new items into the cart
         addButton.addActionListener(e ->{
         	String code = codeField.getText().trim();
         	String quantity = qtyField.getText().trim();
@@ -132,8 +125,6 @@ public class Frame1 extends JFrame{
         	}
         	
         	int qtyNumber = Integer.parseInt(quantity);
-        	
-        	DataModel model = new DataModel();
         	model.addItemToCart(code, qtyNumber);
         });
         
@@ -167,31 +158,6 @@ public class Frame1 extends JFrame{
     	public void actionPerformed(ActionEvent e) {
     		SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     		shiftEndField.setText(simpleDate.format(new Date()));
-    		
-    		// need to clear invoice and computations
-    		
-    	}
-    }
-    
-    public class loadButtonListener implements ActionListener{
-    	public void actionPerformed(ActionEvent e) {    		
-    		JSONParser parser = new JSONParser();
-    		String filePath = "Json\\Inventory.json";
-
-            try {
-                String content = new String(Files.readAllBytes(Paths.get(filePath)));
-                JSONObject object = new JSONObject(content);
-                
-                int id = (int) object.get("id");
-                String name = (String) object.get("name");
-                String email = (String) object.get("email");
-                
-                System.out.println("ID: " + id);
-                System.out.println("Name: " + name);
-                System.out.println("Email: " + email);
-                } catch (IOException e1) {
-                    System.err.println("Error reading the file: " + e1.getMessage());
-                }
     	}
     }
     
@@ -228,22 +194,8 @@ public class Frame1 extends JFrame{
 
     
     public static void main(String[] args) {
-            Frame1 frame = new Frame1();
-            frame.setVisible(true);
-            
-            DataModel model = new DataModel(); // CART is in here
-
-//            Item teddy = new Item("Teddy Bear", 5.50); // ID 0001
-//            Item candy = new Item("Candy", 1.5); // ID 0002
-//            Item iphone = new Item("iPhone", 1119.99); // ID 0003
-//            Item tv = new Item("TV", 3581.26); // ID 0004
-//            ShopInfo shopInfo = new ShopInfo("San Jose", "CA", 9.38, 10.00, "(408) 924-1000");
-//            model.updateStoreInfo(shopInfo);
-//            model.testLOADINVENTORY("0001", teddy); // THIS IS A TEST METHOD CREATED JUST FOR TESTING
-//            model.testLOADINVENTORY("0002", candy);
-//            model.testLOADINVENTORY("0003", iphone);
-//            model.testLOADINVENTORY("0004", tv);
-//            Cart cartTest = new Cart(model);
-            
+    	DataModel model = new DataModel(); // CART is in here
+    	Frame1 frame = new Frame1(model);
+    	frame.setVisible(true);
     }
 }
