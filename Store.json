@@ -1,5 +1,6 @@
 {
   "shop": {
+    "name": "Random Shop Incorporated",
     "city": "San Jose",
     "state": "CA",
     "taxRate": 9.38,
@@ -8,24 +9,34 @@
   },
   "inventory": {
     "PRODUCTID": {
+      "code": "CODE",
       "name": "PRODUCT NAME",
-      "price": 55.55
+      "price": 55.55,
+      "description": "DESCRIPTION HERE"
     },
     "T3DDY": {
+      "code": "T3DDY",
       "name": "Teddy Bear",
-      "price": 15.67
+      "price": 15.67,
+      "descriptoin": "A cute teddy bear"
     },
     "C4NDY": {
+      "code": "C4NDY",
       "name": "Candy",
-      "price": 1.5
+      "price": 1.5,
+      "description": "Sour Patch Kids"
     },
     "IP14M": {
+      "code": "IP14M",
       "name": "iPhone 14 Max",
-      "price": 1119.99
+      "price": 1119.99,
+      "description": "A really big phone"
     },
     "OLEDT": {
+      "code": "OLEDT",
       "name": "OLED TV",
-      "price": 3581.26
+      "price": 3581.26,
+      "description": "An OLED TV"
     }
   }
 }
