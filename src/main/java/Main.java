@@ -1,65 +1,22 @@
-import cashierUI.Frame1;
-import model.DataModel;
-
-import javax.swing.*;
-import java.awt.*;
+package Receipt;
 
 public class Main {
     public static void main(String[] args) {
-        DataModel model = new DataModel(); // CART is in here
-        Frame1 shiftFrame = new Frame1(model);
-        cartTest(model);
-    }
+        // Initialize items
+        Receipt.Item[] items = {
+            new Receipt.Item("Laptop", "LAP123", 1, 1200.00),
+            new Receipt.Item("Mouse", "MSE456", 2, 25.00),
+            new Receipt.Item("Keyboard", "KEY789", 1, 45.00)
+        };
 
+        // Create Receipt instance
+        Receipt receipt = new Receipt(
+            "TechMart", "San Francisco", "CA", "555-123-4567", 
+            "John Doe", 0.08, 0.05, items
+        );
 
-    // TEST FOR CART: FRAME2
-    public static void cartTest(DataModel model) {
-        JFrame testFrame = new JFrame("Test Frame");
-        JButton button1 = new JButton("Add T3DDY");
-        button1.addActionListener(e -> {
-            model.addItemToCart("T3DDY", 1);
-        });
-        JButton button2 = new JButton("Add C4NDY");
-        button2.addActionListener(e -> {
-            model.addItemToCart("C4NDY", 1);
-        });
-        JButton button3 = new JButton("Add IP14M");
-        button3.addActionListener(e -> {
-            model.addItemToCart("IP14M", 1);
-            System.out.println(model.inventory.get("IP14M"));
-        });
-        JButton button4 = new JButton("Add OLEDT");
-        button4.addActionListener(e -> {
-            model.addItemToCart("OLEDT", 1);
-        });
-        JButton Rbutton1 = new JButton("Remove T3DDY");
-        Rbutton1.addActionListener(e -> {
-            model.removeItem("T3DDY");
-        });
-        JButton Rbutton2 = new JButton("Remove C4NDY");
-        Rbutton2.addActionListener(e -> {
-            model.removeItem("C4NDY");
-        });
-        JButton Rbutton3 = new JButton("Remove IP14M");
-        Rbutton3.addActionListener(e -> {
-            model.removeItem("IP14M");
-        });
-        JButton Rbutton4 = new JButton("Remove OLEDT");
-        Rbutton4.addActionListener(e -> {
-            model.removeItem("OLEDT");
-        });
-        testFrame.setLayout(new GridLayout(2, 4));
-        testFrame.add(button1);
-        testFrame.add(button2);
-        testFrame.add(button3);
-        testFrame.add(button4);
-        testFrame.add(Rbutton1);
-        testFrame.add(Rbutton2);
-        testFrame.add(Rbutton3);
-        testFrame.add(Rbutton4);
-
-        testFrame.pack();
-        testFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        testFrame.setVisible(true);
+        // Generate and print the receipt
+        System.out.println(receipt.generateReceipt());
     }
 }
+
