@@ -8,6 +8,7 @@ public class Main {
     public static void main(String[] args) {
         DataModel model = new DataModel(); // CART is in here
         Frame1 shiftFrame = new Frame1(model);
+        cartTest(model);
     }
 
 
@@ -25,6 +26,7 @@ public class Main {
         JButton button3 = new JButton("Add IP14M");
         button3.addActionListener(e -> {
             model.addItemToCart("IP14M", 1);
+            System.out.println(model.inventory.get("IP14M"));
         });
         JButton button4 = new JButton("Add OLEDT");
         button4.addActionListener(e -> {

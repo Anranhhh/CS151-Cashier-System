@@ -1,12 +1,16 @@
 package domain;
 
 public class Item {
-    String name;
-    double price;
+    private String code;
+    private String name;
+    private double price;
+    private String description;
 
-    public Item(String name, double price) {
+    public Item(String code, String name, double price, String description) {
+        this.code = code;
         this.name = name;
         this.price = price;
+        this.description = description;
     }
 
     public String getName() {
@@ -17,4 +21,7 @@ public class Item {
         return this.price;
     }
 
+    public String toString() {
+        return String.format("%-12s %-20s %-25s %7.2f", code, name, description, price);
+    }
 }

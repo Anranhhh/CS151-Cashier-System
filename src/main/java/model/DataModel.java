@@ -18,7 +18,7 @@ import java.util.Map;
 
 
 public class DataModel {
-    private Map<String, Item> inventory;
+    public Map<String, Item> inventory;
     private final Map<String, Integer> inCart;
     private final Cart cart;
     public ShopInfo shop;
