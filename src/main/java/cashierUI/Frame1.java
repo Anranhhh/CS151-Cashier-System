@@ -174,7 +174,7 @@ public class Frame1 extends JFrame{
     		JPanel panel = new JPanel();
            	panel.setLayout(new GridLayout(3, 1, 5, 5));
     		
-    		JLabel label = new JLabel("Code" + "       " + "Name" + "      " + "Description");
+    		JLabel label = new JLabel(String.format("%-12s %-20s %-25s %10s", "ID", "Name", "Description", "Price"));
     		panel.add(label);
     		
     		JTextField text = new JTextField();
