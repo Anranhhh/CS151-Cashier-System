@@ -69,8 +69,7 @@ public class Cart extends JFrame {
         });
         JButton checkout = new JButton("PRINT");
         checkout.addActionListener(e -> {
-            JFrame tempPrint = new JFrame();
-            JOptionPane.showMessageDialog(tempPrint, "Work in Progress!");
+            new ReceiptFrame(model, discountCheck.isSelected());
         });
 
         // add components to summary panel
@@ -102,12 +101,7 @@ public class Cart extends JFrame {
         this.setTitle("Shopping Cart");
         this.pack();
         this.setLocationRelativeTo(null);
-        this.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                dispose();
-            }
-        });
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
     }
 
@@ -121,7 +115,7 @@ public class Cart extends JFrame {
     public void reset() {
         tableModel.setRowCount(0);
         discountCheck.setSelected(false);
-        subtotalPriceLabel.setText("");
-        totalPriceLabel.setText("");
+        subtotalPriceLabel.setText("$" + String.format("%.2f", 0.00));
+        totalPriceLabel.setText("<html><b><font size=\"4\">$" + String.format("%.2f", 0.00) + "</font></html></b>");
     }
 }

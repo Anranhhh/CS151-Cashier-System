@@ -19,8 +19,9 @@ import java.util.Map;
 
 public class DataModel {
     public Map<String, Item> inventory;
-    private final Map<String, Integer> inCart;
+    public final Map<String, Integer> inCart;
     private final Cart cart;
+    public String cashier;
     public ShopInfo shop;
     public double subtotal;
     public double grandtotal;
@@ -110,5 +111,13 @@ public class DataModel {
         grandtotalWithDiscount = 0;
         cart.reset();
         inCart.clear();
+    }
+
+    public String getCashier() {
+        return this.cashier;
+    }
+
+    public void setCashier(String fName, String lName) {
+        this.cashier = fName + " " + lName;
     }
 }

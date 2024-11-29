@@ -13,6 +13,10 @@ public class Item {
         this.description = description;
     }
 
+    public String getCode() {
+        return this.code;
+    }
+
     public String getName() {
         return this.name;
     }

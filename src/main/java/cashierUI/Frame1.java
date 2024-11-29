@@ -1,21 +1,14 @@
 package cashierUI;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.JScrollPane;
+import javax.swing.*;
 
+import domain.Item;
 import model.DataModel;
 
 
@@ -30,8 +23,10 @@ public class Frame1 extends JFrame{
     
     private JButton loadButton;
     private JButton showButton;
+    private DataModel model;
     
     public Frame1(DataModel model) {
+        this.model = model;
     	setTitle("Cashier Shift Management");
         setSize(400, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -83,7 +78,8 @@ public class Frame1 extends JFrame{
         loadButton.addActionListener(e -> {
         	model.updateJSON();
         });
-        showButton.addActionListener(new showButtonListener());
+
+        //showButton.addActionListener(new showButtonListener());
         
         panel2.add(loadButton);
         panel2.add(showButton);
@@ -132,6 +128,35 @@ public class Frame1 extends JFrame{
         	String removeCode = removeCodeField.getText().trim();
         	model.removeItem(removeCode);
         });
+
+        // showButton reads codefield
+        showButton.addActionListener(e -> {
+            String message = String.format("%-12s %-20s %-25s %10s", "ID", "Name", "Description", "Price") + "\n"+ ("-").repeat(70);
+            String text = codeField.getText();
+            if (text.isEmpty() || text.charAt(text.length() - 1) != 42) {
+                for (Item item : model.inventory.values()) {
+                    message += "\n" + item;
+                }
+            } else {
+                text = text.substring(0, text.length() - 1);
+                for (String id : model.inventory.keySet()) {
+                    if (id.contains(text))
+                        message += "\n" + model.inventory.get(id);
+                }
+            }
+            JFrame showList = new JFrame();
+            JTextArea inventoryList = new JTextArea();
+            inventoryList.setText(message);
+            inventoryList.setEditable(false);
+            inventoryList.setColumns(70);
+            inventoryList.setFont(new Font("Courier", Font.PLAIN, 12));
+            JScrollPane jsp = new JScrollPane(inventoryList);
+            JDialog dialog = new JDialog(showList, model.shop.getName(), false);
+            dialog.add(jsp);
+            dialog.setLocationRelativeTo(null);
+            dialog.setVisible(true);
+            dialog.setSize(510, 400);
+        });
         
         itemPanel.add(addItemPanel, BorderLayout.NORTH);
         itemPanel.add(removeItemPanel, BorderLayout.SOUTH);
@@ -153,7 +178,8 @@ public class Frame1 extends JFrame{
     		
     		SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     		shiftStartField.setText(simpleDate.format(new Date()));
-    		
+
+    		model.setCashier(firstName, lastName);
     		System.out.println("Casher added: " + firstName + " " + lastName);
     	}
     }
@@ -165,7 +191,7 @@ public class Frame1 extends JFrame{
     	}
     }
     
-    public class showButtonListener implements ActionListener{
+    /*public class showButtonListener implements ActionListener{
     	public void actionPerformed(ActionEvent e) {
     		JFrame productFrame = new JFrame();
     		productFrame.setSize(400, 300);
@@ -194,5 +220,5 @@ public class Frame1 extends JFrame{
     		productFrame.add(panel, BorderLayout.CENTER);
     		productFrame.setVisible(true);
     	}
-    }
+    }*/
 }
