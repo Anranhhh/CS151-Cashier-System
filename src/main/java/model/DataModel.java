@@ -120,4 +120,8 @@ public class DataModel {
     public void setCashier(String fName, String lName) {
         this.cashier = fName + " " + lName;
     }
+
+     public void cartDispose() {
+    	cart.dispose();
+    }
 }
