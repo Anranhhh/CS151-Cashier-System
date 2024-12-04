@@ -28,4 +28,8 @@ public class Item {
     public String toString() {
         return String.format("%-12s %-20s %-25s %10.2f", code, name, description, price);
     }
+
+    public String getDescription() {
+        return this.description;
+    }
 }
