@@ -1,6 +1,6 @@
 {
   "shop": {
-    "name": "Random Shop Incorporated",
+	"name":"Random Shop Incorporated",
     "city": "San Jose",
     "state": "CA",
     "taxRate": 9.38,
@@ -8,35 +8,95 @@
     "contact": "(408) 924-1000"
   },
   "inventory": {
-    "PRODUCTID": {
-      "code": "CODE",
-      "name": "PRODUCT NAME",
-      "price": 55.55,
-      "description": "DESCRIPTION HERE"
+	"010201": {
+		"code":"010201",
+		"name": "Wireless Camera",
+      	"price": 199.99,
+	  	"description": "aaaaaaaa"
+	},
+    "010202": {
+		"code":"010202",
+      	"name": "Doorbell",
+      	"price": 49.99,
+	  	"description": "aaaaaaaa"
     },
-    "T3DDY": {
-      "code": "T3DDY",
-      "name": "Teddy Bear",
-      "price": 15.67,
-      "descriptoin": "A cute teddy bear"
+    "010203": {
+		"code":"010203",
+      	"name": "Kindle Paperwhite",
+      	"price": 159.99,
+	  	"description": "aaaaaaaa"
     },
-    "C4NDY": {
-      "code": "C4NDY",
-      "name": "Candy",
-      "price": 1.5,
-      "description": "Sour Patch Kids"
+    "010204": {
+		"code":"010204",
+      	"name": "OLED TV",
+      	"price": 2999.99,
+	  	"description": "aaaaaaaa"
     },
-    "IP14M": {
-      "code": "IP14M",
-      "name": "iPhone 14 Max",
-      "price": 1119.99,
-      "description": "A really big phone"
+    "010205": {
+		"code":"010205",
+		"name": "iPhone 16 Pro",
+      	"price": 1999,
+	  	"description": "aaaaaaaa"
     },
-    "OLEDT": {
-      "code": "OLEDT",
-      "name": "OLED TV",
-      "price": 3581.26,
-      "description": "An OLED TV"
-    }
+	"110201": {
+		"code":"110201",
+		"name": "Coffee Machine",
+        "price": 549.95,
+  	  	"description": "aaaaaaaa"
+	},
+	"110202": {
+		"code":"110202",
+		"name": "Robot Vacuum",
+	    "price": 299.99,
+	  	"description": "aaaaaaaa"
+	},
+	"110203": {
+		"code":"110203",
+	    "name": "Hair Dryer",
+		"price": 229.00,
+	  	"description": "aaaaaaaa"
+	},
+	"110204": {
+		"code":"110204",
+		"name": "Electric Toothbrush",
+		"price": 29.96,
+		"description": "aaaaaaaa"
+	},
+	"110205": {
+		"code":"110205",
+		"name": "Gaming Chair",
+		"price": 99.98,
+		"description": "aaaaaaaa"
+	},
+	"210201": {
+		"code":"210201",
+		"name": "Bluetooth Speaker",
+		"price": 19.99,
+		"description": "aaaaaaaa"
+	},
+	"210202": {
+		"code":"210202",
+		"name": "Ice Maker Machine",
+		"price": 59.98,
+		"description": "aaaaaaaa"
+	},
+	"210203": {
+		"code":"210203",
+		"name": "Wireless Printer",
+		"price": 124.00,
+		"description": "aaaaaaaa"
+	},
+	"210204": {
+		"code":"210204",
+		"name": "Kids Walkie Talkies",
+		"price": 21.99,
+		"description": "aaaaaaaa"
+	},
+	"210205": {
+		"code":"210205",
+		"name": "Air Dry Clay",
+		"price": 9.99,
+		"description": "aaaaaaaa"
+	} 
   }
 }
