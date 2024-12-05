@@ -134,16 +134,16 @@ public class Frame1 extends JFrame{
     		else {
     			String prefix = itemCode.replace("*", "");
     			boolean foundItem = false;
+                StringBuilder productList = new StringBuilder("Code\tName\t\tPrice\tDescription\n");
     			
     			for (String productCode : model.inventory.keySet()) {
     				if (productCode.startsWith(prefix)) {
     					foundItem = true;
     					Item item = model.inventory.get(productCode);
-    					StringBuilder productList = new StringBuilder("Code\tName\t\tPrice\tDescription\n");
     					productList.append(String.format("%-10s\t%-25s\t%-10s\t%-30s\n", productCode, item.getName(), item.getPrice(), item.getDescription()));
-    					productArea.setText(productList.toString());
     				}
     			}
+                productArea.setText(productList.toString());
     			
     			if (!foundItem) {
     				JOptionPane.showMessageDialog(this, "No matching products found for the given prefix", "Error", JOptionPane.ERROR_MESSAGE);
