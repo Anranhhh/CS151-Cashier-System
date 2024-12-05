@@ -12,91 +12,91 @@
 		"code":"010201",
 		"name": "Wireless Camera",
       	"price": 199.99,
-	  	"description": "aaaaaaaa"
+	  	"description": "Better night vision"
 	},
     "010202": {
 		"code":"010202",
       	"name": "Doorbell",
       	"price": 49.99,
-	  	"description": "aaaaaaaa"
+	  	"description": "Clear and wider view"
     },
     "010203": {
 		"code":"010203",
       	"name": "Kindle Paperwhite",
       	"price": 159.99,
-	  	"description": "aaaaaaaa"
+	  	"description": "Glare-free display"
     },
     "010204": {
 		"code":"010204",
       	"name": "OLED TV",
       	"price": 2999.99,
-	  	"description": "aaaaaaaa"
+	  	"description": "FUll HD 1080P"
     },
     "010205": {
 		"code":"010205",
-		"name": "iPhone 16 Pro",
+		"name": "iPhone 16 Pro Max",
       	"price": 1999,
-	  	"description": "aaaaaaaa"
+	  	"description": "With Apple intelligence"
     },
 	"110201": {
 		"code":"110201",
 		"name": "Coffee Machine",
         "price": 549.95,
-  	  	"description": "aaaaaaaa"
+  	  	"description": "Stainless Steel"
 	},
 	"110202": {
 		"code":"110202",
 		"name": "Robot Vacuum",
 	    "price": 299.99,
-	  	"description": "aaaaaaaa"
+	  	"description": "App & Voice control"
 	},
 	"110203": {
 		"code":"110203",
 	    "name": "Hair Dryer",
 		"price": 229.00,
-	  	"description": "aaaaaaaa"
+	  	"description": "Negative ionic blow"
 	},
 	"110204": {
 		"code":"110204",
 		"name": "Electric Toothbrush",
 		"price": 29.96,
-		"description": "aaaaaaaa"
+		"description": "Wireless charging"
 	},
 	"110205": {
 		"code":"110205",
 		"name": "Gaming Chair",
 		"price": 99.98,
-		"description": "aaaaaaaa"
+		"description": "Massage lumbar"
 	},
 	"210201": {
 		"code":"210201",
 		"name": "Bluetooth Speaker",
 		"price": 19.99,
-		"description": "aaaaaaaa"
+		"description": "Big sound, small size"
 	},
 	"210202": {
 		"code":"210202",
 		"name": "Ice Maker Machine",
 		"price": 59.98,
-		"description": "aaaaaaaa"
+		"description": "Efficient easy carry"
 	},
 	"210203": {
 		"code":"210203",
 		"name": "Wireless Printer",
 		"price": 124.00,
-		"description": "aaaaaaaa"
+		"description": "Easy setup, mobile printing"
 	},
 	"210204": {
 		"code":"210204",
-		"name": "Kids Walkie Talkies",
-		"price": 21.99,
-		"description": "aaaaaaaa"
+		"name": "LEGO set",
+		"price": 49.99,
+		"description": "Interactive building toy"
 	},
 	"210205": {
 		"code":"210205",
 		"name": "Air Dry Clay",
 		"price": 9.99,
-		"description": "aaaaaaaa"
+		"description": "DIY model magic clay"
 	} 
   }
 }
