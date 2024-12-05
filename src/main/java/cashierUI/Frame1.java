@@ -58,6 +58,8 @@ public class Frame1 extends JFrame{
     		shiftStartField.setText(simpleDate.format(new Date()));
     		
     		System.out.println("Casher added: " + firstName + " " + lastName);
+
+		model.setCashier(firstNameField.getText(), lastNameField.getText());
         });
         shiftPanel.add(shiftStartButton);
         
