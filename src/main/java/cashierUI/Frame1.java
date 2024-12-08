@@ -25,11 +25,13 @@ public class Frame1 extends JFrame{
     private JTextField shiftEndField;
     private JButton shiftStartButton;
     private JButton shiftEndButton;
-    
-    JTextField codeField = new JTextField();
-    
     private JButton loadButton;
     private JButton showButton;
+    private JTextField codeField = new JTextField();
+    private JTextField qtyField = new JTextField();
+    private JTextField removeCodeField = new JTextField();
+    private JButton addButton = new JButton("Add");
+    private JButton removeButton = new JButton("Remove");
     
     public Frame1(DataModel model) {
     	setTitle("Cashier Shift Management");
@@ -45,51 +47,57 @@ public class Frame1 extends JFrame{
         
         // Button to start the shift
         shiftStartButton = new JButton("Start Shift");
+        // add action listener
         shiftStartButton.addActionListener(e -> {
         	String firstName = firstNameField.getText();
     		String lastName = lastNameField.getText();
     		
+    		// check if first and last name field are valid
     		if (firstName.isEmpty() || lastName.isEmpty()) {
     			JOptionPane.showMessageDialog(Frame1.this, "Please enter both first name and last name.", "Error", JOptionPane.ERROR_MESSAGE);
     			return;
     		}
     		
+    		// format the shift start date and time
     		SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     		shiftStartField.setText(simpleDate.format(new Date()));
     		
     		System.out.println("Casher added: " + firstName + " " + lastName);
-
-		model.setCashier(firstNameField.getText(), lastNameField.getText());
+    		
+    		// save cashier's name
+            model.setCashier(firstNameField.getText(), lastNameField.getText());
         });
+        // add the button to the panel
         shiftPanel.add(shiftStartButton);
         
         // Button to end the shift
         shiftEndButton = new JButton("End Shift");
+        // add action listener
         shiftEndButton.addActionListener(e -> {
         	SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     		shiftEndField.setText(simpleDate.format(new Date()));
     		model.cartDispose();
         });
+        // add the button to the panel
         shiftPanel.add(shiftEndButton);
         
+        // create and add text field 
         shiftPanel.add(new JLabel("First Name: "));
         firstNameField = new JTextField(10);
         shiftPanel.add(firstNameField);
-        
         shiftPanel.add(new JLabel("Last Name: "));
         lastNameField = new JTextField(10);
         shiftPanel.add(lastNameField);
-        
         shiftPanel.add(new JLabel("Shift Start Time: "));
         shiftStartField = new JTextField(20);
         shiftStartField.setEditable(false);
         shiftPanel.add(shiftStartField);
-        
         shiftPanel.add(new JLabel("Shift End Time: "));
         shiftEndField = new JTextField(20);
         shiftEndField.setEditable(false);
         shiftPanel.add(shiftEndField);
         
+        // add the panel to the frame
         add(shiftPanel, BorderLayout.NORTH);
         
 /////////////////////////////////Panel 2//////////////////////////////////////////////////
@@ -100,13 +108,15 @@ public class Frame1 extends JFrame{
         loadButton = new JButton("Load Inventory");
         showButton = new JButton("Show Products");
         
-        // add ActionListener to load and show the inventory
+        // add ActionListener to load the inventory
         loadButton.addActionListener(e -> {
         	model.updateJSON();
         	System.out.println("Inventory was loaded.");
         });
         
+        // add ActionListener to show the inventory
         showButton.addActionListener(e -> {
+        	// create a new frame to show the inventory products
         	JFrame productFrame = new JFrame("Product List");
     		productFrame.setSize(400, 300);
     		productFrame.setLayout(new BorderLayout());
@@ -162,26 +172,23 @@ public class Frame1 extends JFrame{
     		productFrame.add(scrollPane, BorderLayout.CENTER);
     		productFrame.add(closeButton, BorderLayout.SOUTH);
     		productFrame.setVisible(true);
-    		
         });
         
+        // add buttons to the panel
         panel2.add(loadButton);
         panel2.add(showButton);
         
+        // add the panel to the frame
         add(panel2, BorderLayout.CENTER);
         
 /////////////////////////////////Panel 3//////////////////////////////////////////////////
         
-        //JTextField codeField = new JTextField();
-        JTextField qtyField = new JTextField();
-        JTextField removeCodeField = new JTextField();
-        JButton addButton = new JButton("Add");
-        JButton removeButton = new JButton("Remove");
         JPanel itemPanel = new JPanel();
         itemPanel.setLayout(new BorderLayout());
         JPanel addItemPanel = new JPanel();
         JPanel removeItemPanel = new JPanel();
         
+        // format adding and removing function
         addItemPanel.setLayout(new GridLayout(1, 5));
         removeItemPanel.setLayout(new GridLayout(1, 3, 5, 5));
         addItemPanel.add(new JLabel("Item (code): "));
@@ -205,12 +212,14 @@ public class Frame1 extends JFrame{
         	}
         	
         	// Check if the entered item code exist
-        	if (!model.inventory.containsKey(code)) {
+        	if (!model.inventory.containsKey(code)) { // entered code doesn't exist
         		JOptionPane.showMessageDialog(this, "The product code entered does not exist", "Error", JOptionPane.ERROR_MESSAGE);
         	}
-        	else {
+        	else { // entered code matches inventory
         		int qtyNumber = Integer.parseInt(quantity);
         		model.addItemToCart(code, qtyNumber);
+        		codeField.setText("");
+        		qtyField.setText("");
         	}
         });
         
@@ -218,6 +227,7 @@ public class Frame1 extends JFrame{
         removeButton.addActionListener(e ->{
         	String removeCode = removeCodeField.getText().trim();
         	model.removeItem(removeCode);
+        	removeCodeField.setText("");
         });
         
         itemPanel.add(addItemPanel, BorderLayout.NORTH);
