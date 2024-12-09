@@ -118,7 +118,7 @@ public class Frame1 extends JFrame{
         showButton.addActionListener(e -> {
         	// create a new frame to show the inventory products
         	JFrame productFrame = new JFrame("Product List");
-    		productFrame.setSize(400, 300);
+    		productFrame.setSize(600, 300);
     		productFrame.setLayout(new BorderLayout());
     		
     		JTextArea productArea = new JTextArea();

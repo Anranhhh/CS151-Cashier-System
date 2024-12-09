@@ -8,3 +8,5 @@ public class Main {
         frame.setVisible(true);
     }
 }
+
+/// Dependency was added through Maven
