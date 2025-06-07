@@ -64,7 +64,7 @@ This structure allowed us to isolate responsibilities, reuse logic, and maintain
 
 ### See My Commits:
 You can view all my contributions to the original project here:  
-[Commits by my school GitHub account](https://github.com/MarlonHuynh/146SemesterProjectLibGDX/commits?author=AnanranG)
+[Commits by my school GitHub account](https://github.com/galacticmice/151cashier/commits/main/?author=AnanranG)
 
 
 ## Purpose of This Fork
