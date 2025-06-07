@@ -62,6 +62,11 @@ This structure allowed us to isolate responsibilities, reuse logic, and maintain
 - JSON (via `org.json` library)
 - IntelliJ IDEA
 
+### See My Commits:
+You can view all my contributions to the original project here:  
+[Commits by my school GitHub account](https://github.com/MarlonHuynh/146SemesterProjectLibGDX/commits?author=AnanranG)
+
+
 ## Purpose of This Fork
 
 This fork serves as a **portfolio showcase** of my contribution to a collaborative software engineering project. It highlights my experience in:
